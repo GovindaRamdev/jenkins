@@ -1,1 +1,28 @@
-asdf
+async function saveEmbeddingsToDB(embeddingMap) {
+    const uri = process.env.MONGODB_URI; // e.g., "mongodb://localhost:27017/your_db_name"
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        // Extract DB name from URI
+        const dbName = new URL(uri).pathname.replace("/", "") || "test";
+        const db = client.db(dbName);
+        const collection = db.collection('file_embeddings');
+        const docs = [];
+        for (let [embeddingStr, fileName] of embeddingMap.entries()) {
+            docs.push({
+                fileName,
+                embedding: JSON.parse(embeddingStr)
+            });
+        }
+        if (docs.length === 0) {
+            console.log("No embeddings to save.");
+            return;
+        }
+        await collection.insertMany(docs);
+        console.log('✅ Embeddings saved to DB');
+    } catch (err) {
+        console.error("❌ MongoDB Error:", err.message);
+    } finally {
+        await client.close();
+    }
+}
