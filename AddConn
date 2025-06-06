@@ -1,0 +1,36 @@
+// Dummy JavaScript Code: Greeting Function
+function greetUser(name) {
+    if (!name) {
+        console.log("Hello, Stranger!");
+    } else {
+        console.log(`Hello, ${name}! Welcome to the world of JavaScript.`);
+    }
+}
+
+// Call the function
+greetUser("Alice"); // Output: Hello, Alice! Welcome to the world of JavaScript.
+greetUser();        // Output: Hello, Stranger!
+
+// Dummy JavaScript Code: Basic Counter
+let counter = 0;
+
+function incrementCounter() {
+    counter++;
+    console.log(`Counter is now: ${counter}`);
+}
+
+// Increment the counter a few times
+incrementCounter(); // Output: Counter is now: 1
+incrementCounter(); // Output: Counter is now: 2
+incrementCounter(); // Output: Counter is now: 3
+
+// Dummy JavaScript Code: Simple Array Manipulation
+let fruits = ["Apple", "Banana", "Cherry"];
+
+function addFruit(fruit) {
+    fruits.push(fruit);
+    console.log(`Added ${fruit}. Current fruits: ${fruits.join(", ")}`);
+}
+
+// Add a fruit
+addFruit("Mango"); // Output: Added Mango. Current fruits: Apple, Banana, Cherry, Mango
